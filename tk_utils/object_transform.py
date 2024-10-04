@@ -10,7 +10,7 @@ def MoveAllFailsafe(context, move_target, destination):
     BLENDER 2.8 - This also uses a region to ensure that it moves in a 3D View region that hasnt been deallocated.
     """
     # ///////////////////////////////
-    # WARNING - WARNING - WARNING - WARNING - WARNING - WARNING 
+    # WARNING - WARNING - WARNING - WARNING - WARNING - WARNING
     # The context override is known to crash only when testing.
     # Under normal circumstances this function is completely safe.
     # ///////////////////////////////
@@ -40,7 +40,7 @@ def MoveAllFailsafe(context, move_target, destination):
         # Calculate the translation vector using the 3D cursor
         bpy.ops.object.select_all(action = 'DESELECT')
         FocusObject(move_target)
-    
+
         bpy.ops.view3d.snap_cursor_to_selected()
 
         root_location = (0.0, 0.0, 0.0)
@@ -70,7 +70,7 @@ def MoveAllFailsafe(context, move_target, destination):
             snap = False,
             release_confirm = False,
         )
-        
+
         bpy.ops.object.mode_set(mode = previous_mode)
 
     # Position the cursor back to it's original location
@@ -95,7 +95,7 @@ def MoveObjectFailsafe(target, context, location):
 
     override = Find3DViewContext()
 
-    with context.temp_override(window = override['window'], area = override['area'], 
+    with context.temp_override(window = override['window'], area = override['area'],
             region = override['region']):
 
         copy_location = Vector((location[0], location[1], location[2]))
@@ -192,7 +192,7 @@ def MoveBone(target, bone, context, location):
     #print(translation_loc)
 
     # Calculate the movement difference
-    location_diff = copy_location - cursor.location
+    location_diff = copy_location - cursor_loc
 
     bpy.ops.transform.translate(
         value=location_diff,
